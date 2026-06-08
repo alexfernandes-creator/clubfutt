@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>clubfutt - Second Screen & Bolão Copa 2026</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@700&family=Plus+Jakarta+Sans:wght@400;600;800&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="https://js.stripe.com/v3/"></script>
+</head>
+<body>
+
+    <header class="main-header">
+        <div class="logo">CLUB<span>FUTT</span></div>
+        <div class="lang-selector-container">
+            <select id="select-idioma" onchange="mudarIdioma(this.value)">
+                <option value="pt">🇧🇷 Português (BRL)</option>
+                <option value="en">🇺🇸 English (USD)</option>
+            </select>
+        </div>
+        <div class="header-actions">
+            <button id="auth-btn" class="btn-primary" data-i18n="btn_login">Entrar com Google</button>
+        </div>
+    </header>
+
+    <main class="app-container">
+        <div class="hud-tabs-container">
+            <button class="hud-tab active" onclick="alternarAba('aba-jogos')" data-i18n="tab_jogos">⚽ Ao Vivo & Partidas</button>
+            <button class="hud-tab" onclick="alternarAba('aba-tabelas')" data-i18n="tab_tabelas">📊 Classificação</button>
+            <button class="hud-tab pro-glow-tab" onclick="alternarAba('aba-hudpro')" data-i18n="tab_pro">👑 Central Analítica HUD Pro</button>
+        </div>
+
+        <section id="aba-jogos" class="hud-panel active">
+            <div class="section-title">
+                <h2 data-i18n="tab_jogos">⚽ Ao Vivo & Partidas</h2>
+                <span class="live-indicator" data-i18n="live_badge">● LIVE GLOBAL</span>
+            </div>
+            <div id="matches-grid" class="matches-grid">
+                <div class="match-card skeleton"></div>
+                <div class="match-card skeleton"></div>
+            </div>
+        </section>
+
+        <section id="aba-tabelas" class="hud-panel">
+            <div class="section-title">
+                <h2 data-i18n="tab_tabelas">📊 Classificação</h2>
+            </div>
+            <div class="b2b-banner">
+                <h3 data-i18n="coming_soon_title">Dados em Tempo Real 2026</h3>
+                <p data-i18n="coming_soon_desc">Esta liga está sendo integrada aos nossos servidores de alta velocidade. Disponível muito em breve para assinantes!</p>
+            </div>
+            <div class="b2b-banner">
+                <h3 data-i18n="sync_radar">Sincronizando Radar Global</h3>
+                <p data-i18n="sync_radar_desc">O mapeamento de partidas em tempo real está sendo calibrado com os satélites parceiros. Ativação em breve!</p>
+            </div>
+        </section>
+
+        <section id="aba-hudpro" class="hud-panel">
+            <div class="premium-lock">
+                <h2 data-i18n="tab_pro">👑 Central Analítica HUD Pro</h2>
+                <p>Gráficos de pressão, xG (Gols Esperados) e notificações milissegundos antes da TV.</p>
+                <button class="unlock-pro-btn" id="btn-checkout-pro" onclick="dispararCheckoutIdomaAtual()" data-i18n="btn_desbloquear">
+                    Desbloquear HUD Pro por R$ 54,89/mês
+                </button>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="main-footer">
+        <p>clubfutt &copy; 2026 - Powered by openfootball, football-data.org & TheSportsDB.</p>
+    </footer>
+
+    <script src="app.js"></script>
+</body>
+</html>
